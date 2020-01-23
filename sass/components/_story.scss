@@ -2,12 +2,12 @@
   width: 75%;
   margin: 0 auto;
   box-shadow: 0 3rem 6rem rgba($color: $color-black, $alpha: .1);
-  background-color: $color-white;
+  background-color: rgba($color-white, .7);
   border-radius: 3px;
   padding: 6rem;
   padding-left: 9rem; //Additional 3rem padding to account for the transform under &__shape
   font-size: $default-font-size;
-  transform: skewX(-12deg);
+  transform: skewX(-12.01deg); //The .01 fixes the weird black lines on both sides bug on hover
 
   &__shape {
     width: 15rem;
@@ -20,13 +20,43 @@
     -webkit-clip-path: circle(50% at 50% 50%);
     clip-path: circle(50% at 50% 50%); //The first number in circle defines the radius
     transform: translateX(-3rem) skewX(12deg); //Undoes the skewing of the parent elements box (skewX)
+    position: relative;
   }
 
   &__img {
     height: 100%;
+    transform: translateX(-3.5rem) scale(1.3);
+    backface-visibility: hidden;
+    transition: all .5s;
   }
 
   &__text {
     transform: skewX(12deg); //Undoes the skewing of the parent elements box
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    transition: all .5s;
+    backface-visibility: hidden;
+  }
+
+  //Hover Animations
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
   }
 }
