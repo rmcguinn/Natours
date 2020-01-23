@@ -1,0 +1,32 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color: $color-black, $alpha: .1);
+  background-color: $color-white;
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem; //Additional 3rem padding to account for the transform under &__shape
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    background-color: orangered;
+    float: left; 
+    -webkit-shape-outside: circle(50% at 50% 50%); //shape-outside only works with a floated element with defined dimensions
+    shape-outside: circle(50% at 50% 50%); //The second 50%'s define where the radius is measured from
+
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%); //The first number in circle defines the radius
+    transform: translateX(-3rem) skewX(12deg); //Undoes the skewing of the parent elements box (skewX)
+  }
+
+  &__img {
+    height: 100%;
+  }
+
+  &__text {
+    transform: skewX(12deg); //Undoes the skewing of the parent elements box
+  }
+}
