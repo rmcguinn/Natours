@@ -57,6 +57,7 @@
   }
 
   // Links to the pop via id='popup
+  
   &:target {
     opacity: 1;
     visibility: visible;
